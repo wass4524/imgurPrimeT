@@ -15,13 +15,9 @@ const useFetch = (query: string, headers: HeadersInit) => {
     fetch(query, { headers, signal: abortController.signal })
       .then(response => response.ok ? response.json() : (() => { throw new Error("Couldn't fetch data from imgur") })())
       .then(({ data }) => {
-        setTimeout(() => {
-          setData(data)
-          setIsLoading(false)
-          setError(null)
-          console.log(data)
-        }, 1000 );
-
+        setData(data)
+        setIsLoading(false)
+        setError(null)
       })
       .catch((error) => {
         setIsLoading(false)
